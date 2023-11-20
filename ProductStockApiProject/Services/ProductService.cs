@@ -21,12 +21,14 @@ namespace ProductStockApiProject.Services
             return productsDomain.Select(p => MapProductDomainToDTO(p));
         }
 
+        // 1. Read: Get Product By Using Its Id
         public ProductDTO? GetProductById(Guid id)
         {
             var productDomain = dbcontext.Products.FirstOrDefault(p => p.Id == id);
             return productDomain != null ? MapProductDomainToDTO(productDomain) : null;
         }
 
+        // 2. Create: Create The Product 
         public ProductDTO CreateProduct(AddProductRequestDto addProductRequestDto)
         {
             // Map or Convert DTO to Domain Model
@@ -51,6 +53,7 @@ namespace ProductStockApiProject.Services
             return MapProductDomainToDTO(productDomainModel);
         }
 
+        // 3. Update: Update The Product
         public ProductDTO? UpdateProduct(Guid id, UpdateProductRequestDto updateProductRequestDto)
         {
             var productDomainModel = dbcontext.Products.FirstOrDefault(p => p.Id == id);
@@ -66,6 +69,7 @@ namespace ProductStockApiProject.Services
             return MapProductDomainToDTO(productDomainModel);
         }
 
+        // 4. Delete: Delete The Product
         public bool DeleteProduct(Guid id)
         {
             var productDomainModel = dbcontext.Products.FirstOrDefault(p => p.Id == id);
@@ -79,7 +83,6 @@ namespace ProductStockApiProject.Services
             dbcontext.SaveChanges();
             return true;
         }
-
 
         // Add methods for stock-related operations in the ProductService class
         public IEnumerable<StockDTO>? GetProductStocks(Guid ProductId)
@@ -99,6 +102,7 @@ namespace ProductStockApiProject.Services
             });
         }
 
+        // Add Stock to Product
         public StockDTO? AddStockToProduct(Guid productId, int quantity)
         {
             var product = dbcontext.Products.FirstOrDefault(p => p.Id == productId);
@@ -125,6 +129,7 @@ namespace ProductStockApiProject.Services
             };
         }
 
+        // Remove the Stock
         public bool RemoveStock(Guid stockId)
         {
             var stock = dbcontext.Stocks.FirstOrDefault(s => s.Id == stockId);
@@ -140,6 +145,7 @@ namespace ProductStockApiProject.Services
             return true;
         }
 
+       // Generate Product Stock Report
         public IEnumerable<ProductStockReportDTO> GenerateProductStockReport()
         {
             var products = dbcontext.Products.Include(p => p.Stocks);
@@ -164,7 +170,7 @@ namespace ProductStockApiProject.Services
             return report;
         }
 
-
+        // Mapping Product Domian Model To ProductDTO
         private static ProductDTO MapProductDomainToDTO(Product productDomain)
         {
             return new ProductDTO
@@ -176,6 +182,8 @@ namespace ProductStockApiProject.Services
                 IsDeleted = productDomain.IsDeleted,
             };
         }
+
+        // Mapping Stock Domain Model To StockDTO
         private static StockDTO MapStockDomainToDTO(Stock stock)
         {
             return new StockDTO

@@ -25,7 +25,7 @@ namespace ProductStockApiProject
 
             // AutoMapper configuration
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped<ProductService>(); // Add this line to register ProductService
+            services.AddScoped<ProductService>(); // To register ProductService
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

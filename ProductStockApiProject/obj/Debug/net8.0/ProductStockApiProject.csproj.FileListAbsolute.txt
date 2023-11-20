@@ -136,3 +136,4 @@ C:\Users\Mervan\Desktop\DotNet\WebApi\ProductStockApiProject\obj\Debug\net8.0\Pr
 C:\Users\Mervan\Desktop\DotNet\WebApi\ProductStockApiProject\obj\Debug\net8.0\ref\ProductStockApiProject.dll
 C:\Users\Mervan\Desktop\DotNet\WebApi\ProductStockApiProject\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\Mervan\Desktop\DotNet\WebApi\ProductStockApiProject\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Mervan\Desktop\DotNet\WebApi\ProductStockApiProject\obj\Debug\net8.0\ProductStockApiProject.sourcelink.json

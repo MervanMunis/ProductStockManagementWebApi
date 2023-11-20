@@ -35,7 +35,7 @@ namespace ProductStockApiProject.Controllers
             return Ok(productDto);
         }
 
-        // Post to create new product
+        // 1. Post: to create new product
         [HttpPost]
         public IActionResult CreateProduct([FromBody] AddProductRequestDto addProductRequestDto)
         {
@@ -43,7 +43,7 @@ namespace ProductStockApiProject.Controllers
             return CreatedAtAction(nameof(GetProductById), new { id = createdProductDto.Id }, createdProductDto);
         }
 
-        // Put to Update Product 
+        // 2. Put: to Update Product 
         [HttpPut("{id:Guid}")]
         public IActionResult UpdateProduct(Guid id, [FromBody] UpdateProductRequestDto updateProductRequestDto)
         {
@@ -57,7 +57,7 @@ namespace ProductStockApiProject.Controllers
             return Ok(updatedProductDto);
         }
 
-        // Delete to Delete Prouct
+        // 3. Delete: to Delete Prouct
         [HttpDelete("{id:Guid}")]
         public IActionResult DeleteProduct(Guid id)
         {
@@ -72,7 +72,6 @@ namespace ProductStockApiProject.Controllers
 
 
         // Integrate stock-related functionalities into the ProductsController.
-
         [HttpGet("{productId:Guid}/stocks")]
         public IActionResult GetProductStocks(Guid productId)
         {
@@ -86,6 +85,7 @@ namespace ProductStockApiProject.Controllers
             return Ok(stocksDto);
         }
 
+        // To Add Stock to Product
         [HttpPost("{productId:Guid}/stocks")]
         public IActionResult AddStockToProduct(Guid productId, [FromBody] int quantity)
         {
@@ -99,6 +99,7 @@ namespace ProductStockApiProject.Controllers
             return CreatedAtAction(nameof(GetProductStocks), new { productId = productId }, addedStockDto);
         }
 
+        // To Remove Stock
         [HttpDelete("stocks/{stockId:Guid}")]
         public IActionResult RemoveStock(Guid stockId)
         {
